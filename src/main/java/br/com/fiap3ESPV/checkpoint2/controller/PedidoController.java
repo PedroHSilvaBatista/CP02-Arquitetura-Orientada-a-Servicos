@@ -38,7 +38,7 @@ public class PedidoController {
 
     @PutMapping
     @Transactional
-    public void atualizarPedido(@RequestBody DadosAtualizacaoPedido dadosAtualizacaoPedido) {
+    public void atualizarPedido(@RequestBody @Valid DadosAtualizacaoPedido dadosAtualizacaoPedido) {
         pedidoService.atualizarPedido(dadosAtualizacaoPedido);
     }
 
