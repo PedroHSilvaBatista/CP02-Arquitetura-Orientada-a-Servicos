@@ -41,4 +41,10 @@ public class PedidoController {
     public void atualizarPedido(@RequestBody DadosAtualizacaoPedido dadosAtualizacaoPedido) {
         pedidoService.atualizarPedido(dadosAtualizacaoPedido);
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void removerPedido(@PathVariable Long id) {
+        pedidoService.removerPedido(id);
+    }
 }

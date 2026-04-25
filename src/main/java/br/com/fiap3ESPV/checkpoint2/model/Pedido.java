@@ -11,9 +11,16 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "cliente_nome")
     private String clienteNome;
+
+    @Column(name = "data_pedido")
     private LocalDate dataPedido;
+
+    @Column(name = " valor_total")
     private Double valorTotal;
+
     private boolean ativo = true;
 
     public Pedido(DadosCadastroPedido dadosCadastroPedido) {
@@ -39,5 +46,9 @@ public class Pedido {
         if (dadosAtualizacaoPedido.ativo()) {
             this.ativo = dadosAtualizacaoPedido.ativo();
         }
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }

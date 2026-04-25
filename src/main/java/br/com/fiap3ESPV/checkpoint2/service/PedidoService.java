@@ -14,7 +14,6 @@ public class PedidoService {
 
     public void cadastroPedido(DadosCadastroPedido dadosCadastroPedido) {
         Pedido pedido = new Pedido(dadosCadastroPedido);
-        System.out.println(pedido);
         pedidoRepository.save(pedido);
     }
 
@@ -30,6 +29,12 @@ public class PedidoService {
     public void atualizarPedido(DadosAtualizacaoPedido dadosAtualizacaoPedido) {
         Pedido pedido = pedidoRepository.getReferenceById(dadosAtualizacaoPedido.id());
         pedido.atualizarDados(dadosAtualizacaoPedido);
+        pedidoRepository.save(pedido);
+    }
+
+    public void removerPedido(Long id) {
+        Pedido pedido = pedidoRepository.getReferenceById(id);
+        pedido.excluir();
         pedidoRepository.save(pedido);
     }
 }
