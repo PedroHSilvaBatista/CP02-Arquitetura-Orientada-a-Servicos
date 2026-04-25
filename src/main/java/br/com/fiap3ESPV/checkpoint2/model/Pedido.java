@@ -21,4 +21,23 @@ public class Pedido {
         this.dataPedido = LocalDate.now();
         this.valorTotal = dadosCadastroPedido.valorTotal();
     }
+
+    public void atualizarDados(DadosAtualizacaoPedido dadosAtualizacaoPedido) {
+
+        if (dadosAtualizacaoPedido.clienteNome() != null && !dadosAtualizacaoPedido.clienteNome().isBlank()) {
+            this.clienteNome = dadosAtualizacaoPedido.clienteNome();
+        }
+
+        if (dadosAtualizacaoPedido.dataPedido() != null) {
+            this.dataPedido = dadosAtualizacaoPedido.dataPedido();
+        }
+
+        if (dadosAtualizacaoPedido.valorTotal() != null) {
+            this.valorTotal = dadosAtualizacaoPedido.valorTotal();
+        }
+
+        if (dadosAtualizacaoPedido.ativo()) {
+            this.ativo = dadosAtualizacaoPedido.ativo();
+        }
+    }
 }

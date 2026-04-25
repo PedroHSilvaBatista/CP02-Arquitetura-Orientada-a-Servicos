@@ -1,8 +1,11 @@
 package br.com.fiap3ESPV.checkpoint2.controller;
 
+import br.com.fiap3ESPV.checkpoint2.model.DadosAtualizacaoPedido;
 import br.com.fiap3ESPV.checkpoint2.model.DadosCadastroPedido;
+import br.com.fiap3ESPV.checkpoint2.model.DadosDetalhamentoPedido;
 import br.com.fiap3ESPV.checkpoint2.model.DadosListagemPedidos;
 import br.com.fiap3ESPV.checkpoint2.service.PedidoService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +21,7 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @PostMapping
+    @Transactional
     public void cadastrarPedido(@RequestBody @Valid DadosCadastroPedido dadosCadastroPedido) {
         pedidoService.cadastroPedido(dadosCadastroPedido);
     }
@@ -27,5 +31,14 @@ public class PedidoController {
         return pedidoService.listarPedidos(pageable);
     }
 
+    @GetMapping("/{id}")
+    public DadosDetalhamentoPedido exibirDetalhesDoPedido(@PathVariable Long id) {
+        return pedidoService.exibeDetalhesDoPedido(id);
+    }
 
+    @PutMapping
+    @Transactional
+    public void atualizarPedido(@RequestBody DadosAtualizacaoPedido dadosAtualizacaoPedido) {
+        pedidoService.atualizarPedido(dadosAtualizacaoPedido);
+    }
 }
